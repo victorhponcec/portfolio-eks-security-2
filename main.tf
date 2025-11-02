@@ -43,7 +43,7 @@ resource "aws_subnet" "private_a_az1" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.111.3.0/24"
   availability_zone       = var.az1
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name                                 = "private-1"
     "kubernetes.io/role/internal-elb"    = "1"
@@ -54,7 +54,7 @@ resource "aws_subnet" "private_b_az2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.111.4.0/24"
   availability_zone       = var.az2
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name                                 = "private-1"
     "kubernetes.io/role/internal-elb"    = "1"

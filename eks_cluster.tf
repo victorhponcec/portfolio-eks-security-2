@@ -56,8 +56,6 @@ resource "aws_eks_node_group" "ng1" {
   node_group_name = "node-group-1"
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids = [
-    aws_subnet.public_a_az1.id,
-    aws_subnet.public_b_az2.id,
     aws_subnet.private_a_az1.id,
     aws_subnet.private_b_az2.id,
   ]
@@ -78,6 +76,7 @@ resource "aws_eks_node_group" "ng1" {
     aws_iam_role_policy_attachment.node_AmazonEC2ContainerRegistryPullOnly,
     aws_iam_role_policy_attachment.node_AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.node_AmazonEKSWorkerNodeMinimalPolicy,
+    aws_iam_role_policy_attachment.node_AmazonEKSWorkerNodePolicy,
   ]
 }
 
@@ -103,6 +102,10 @@ resource "aws_iam_role_policy_attachment" "node_AmazonEKS_CNI_Policy" {
 }
 resource "aws_iam_role_policy_attachment" "node_AmazonEKSWorkerNodeMinimalPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy"
+  role       = aws_iam_role.node.name
+}
+resource "aws_iam_role_policy_attachment" "node_AmazonEKSWorkerNodePolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.node.name
 }
 resource "aws_iam_role_policy_attachment" "node_AmazonEC2ContainerRegistryPullOnly" {

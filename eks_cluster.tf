@@ -77,6 +77,10 @@ resource "aws_eks_node_group" "ng1" {
     aws_iam_role_policy_attachment.node_AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.node_AmazonEKSWorkerNodeMinimalPolicy,
     aws_iam_role_policy_attachment.node_AmazonEKSWorkerNodePolicy,
+    aws_nat_gateway.ngw,
+    aws_nat_gateway.ngw2,
+    aws_route_table_association.private_a_az1,
+    aws_route_table_association.private_b_az2,
   ]
 }
 

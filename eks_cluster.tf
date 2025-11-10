@@ -153,6 +153,4 @@ resource "aws_iam_role_policy_attachment" "cluster_AmazonEKSNetworkingPolicy" {
 }
 
 #to-do
-#1. verify creation order is ok | helm lb controller + eks roles were added later | 
-    #helm controller is giving problems = depends on admin role
 #2. add: k8s_deployment + ecr + codebuild + kubernets_secrets
